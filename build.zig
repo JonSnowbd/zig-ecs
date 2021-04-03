@@ -67,14 +67,14 @@ pub fn linkArtifact(b: *Builder, artifact: *std.build.LibExeObjStep, target: std
     const build_mode = b.standardReleaseOptions();
     switch (lib_type) {
         .static => {
-            const lib = b.addStaticLibrary("ecs", "ecs.zig");
+            const lib = b.addStaticLibrary("ecs", prefix_path++"src/ecs.zig");
             lib.setBuildMode(build_mode);
             lib.install();
 
             artifact.linkLibrary(lib);
         },
         .dynamic => {
-            const lib = b.addSharedLibrary("ecs", "ecs.zig", .unversioned);
+            const lib = b.addSharedLibrary("ecs", prefix_path++"src/ecs.zig", .unversioned);
             lib.setBuildMode(build_mode);
             lib.install();
 
